@@ -24,5 +24,11 @@ enum Constants {
         static let cancel        = "xmark"
         static let dice          = "dice"
         static let log           = "plus.app"
+        // StatusBadge
+        static let indoor        = "house.fill"
+        static let outdoor       = "mountain.2.fill"
+        static let tools         = "hammer.fill"
+        static let oneTime       = "hands.and.sparkles.fill"
+        static let newInterest   = "sparkle.magnifyingglass"
     }
 }

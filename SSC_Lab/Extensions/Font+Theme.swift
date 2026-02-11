@@ -25,6 +25,31 @@ extension Font {
         .custom("magic-world.regular", size: 36, relativeTo: .title)
     }
     
+
+    // MARK: - Timeframe Large
+    /// SF Pro Rounded Bold (20)
+    static var appTimeframeL_High: Font {
+        .system(size: 20, weight: .bold, design: .rounded)
+    }
+    /// SF Pro Rounded Bold (16)
+    static var appTimeframeL_Mid: Font {
+        .system(size: 16, weight: .bold, design: .rounded)
+    }
+    /// SF Pro Rounded Bold (14)
+    static var appTimeframeL_Low: Font {
+        .system(size: 14, weight: .bold, design: .rounded)
+    }
+
+    // MARK: - Timeframe Small
+    /// SF Pro Rounded Bold (10)
+    static var appTimeframeS_High: Font {
+        .system(size: 10, weight: .bold, design: .rounded)
+    }
+    /// SF Pro Rounded Bold (8)
+    static var appTimeframeS_Low: Font {
+        .system(size: 8, weight: .bold, design: .rounded)
+    }
+    
     
     // System Fonts
     
