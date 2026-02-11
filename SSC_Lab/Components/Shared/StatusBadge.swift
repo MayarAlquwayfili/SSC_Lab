@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Badge Type
+// Badge Type
 enum BadgeType: Hashable {
     case indoor
     case outdoor
@@ -17,7 +17,6 @@ enum BadgeType: Hashable {
     case newInterest
     case timeframe(String)
 
-    /// All icon-based types (for previews and iteration).
     static let iconCases: [BadgeType] = [.indoor, .outdoor, .tools, .noTools, .oneTime, .newInterest]
 
     var sfSymbolName: String? {
@@ -43,10 +42,10 @@ enum BadgeType: Hashable {
     }
 }
 
-// MARK: - Badge Size
+// Badge Size
 enum BadgeSize {
-    case large  // Circle: 45×45, Icon: 24
-    case small  // Circle: 24×24, Icon: 12
+    case large
+    case small
 
     var circleDimension: CGFloat {
         switch self {
@@ -64,7 +63,7 @@ enum BadgeSize {
 
 }
 
-// MARK: - Badge Variant
+// Badge Variant
 enum BadgeVariant: Hashable {
     case primary
     case secondary
@@ -77,7 +76,7 @@ enum BadgeVariant: Hashable {
     }
 }
 
-// MARK: - StatusBadge View
+// StatusBadge View
 struct StatusBadge: View {
     let type: BadgeType
     let size: BadgeSize
@@ -101,7 +100,7 @@ struct StatusBadge: View {
         .frame(width: size.circleDimension, height: size.circleDimension)
     }
 
-    /// Theme font for timeframe label (dynamic typography).
+    /// Theme font for timeframe label  
     private func timeframeFont(for label: String) -> Font {
         switch size {
         case .large:

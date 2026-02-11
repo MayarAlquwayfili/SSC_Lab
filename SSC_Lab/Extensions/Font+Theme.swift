@@ -40,7 +40,7 @@ extension Font {
         .system(size: 14, weight: .bold, design: .rounded)
     }
 
-    // MARK: - Timeframe Small
+    //Timeframe Small
     /// SF Pro Rounded Bold (10)
     static var appTimeframeS_High: Font {
         .system(size: 10, weight: .bold, design: .rounded)
@@ -73,8 +73,8 @@ extension Font {
     static var appCaption: Font {
         .system(size: 12, weight: .regular, design: .rounded).italic()
     }
-    /// SF Pro Regular (10)
+    /// SF Pro Rounded Semibold (10) – Tab bar labels
     static var appMicro: Font {
-        .system(size: 10, weight: .regular, design: .rounded)
+        .system(size: 10, weight: .semibold, design: .rounded)
     }
 }

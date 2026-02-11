@@ -31,4 +31,16 @@ enum Constants {
         static let oneTime       = "hands.and.sparkles.fill"
         static let newInterest   = "sparkle.magnifyingglass"
     }
+
+    // Tab bar
+    enum AppTabBar {
+        static let homeIcon     = "square.grid.2x2.fill"
+        static let homeLabel    = "Home"
+        static let labIcon      = "viewfinder.circle.fill"
+        static let labLabel     = "Lab"
+        static let winsIcon     = "archivebox.fill"
+        static let winsLabel    = "Wins"
+        static let settingsIcon = "gearshape.fill"
+        static let settingsLabel = "Settings"
+    }
 }

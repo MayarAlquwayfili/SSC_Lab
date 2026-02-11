@@ -49,13 +49,12 @@ struct StatusGroup: View {
 
 #Preview("StatusGroup – Wins View (Real Card Width 181)") {
     VStack {
-        // هنا حددنا العرض بـ 181 عشان نشوف الـ 50pt صح
         StatusGroup(
             items: [.outdoor, .noTools, .timeframe("+30D"), .oneTime],
             size: .small,
             variant: .primary
         )
-        .frame(width: 181) // عرض الكرت حقك في فيجما
+        .frame(width: 181)
     }
     .padding()
  }
