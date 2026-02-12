@@ -30,6 +30,21 @@ enum Constants {
         static let tools         = "hammer.fill"
         static let oneTime       = "hands.and.sparkles.fill"
         static let newInterest   = "sparkle.magnifyingglass"
+        static let toolsNone     = "hammer.slash.fill"
+    }
+
+    // Experiment Setup card
+    enum Setup {
+        static let environmentLabel = "Environment"
+        static let toolsLabel       = "Tools"
+        static let timeframeLabel   = "Timeframe"
+        static let logTypeLabel     = "Log type"
+        static let indoor           = "Indoor"
+        static let outdoor          = "Outdoor"
+        static let required         = "Required"
+        static let none             = "None"
+        static let oneTime          = "One time"
+        static let newInterest      = "New Interest"
     }
 
     // Tab bar
