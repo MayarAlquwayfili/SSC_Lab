@@ -18,11 +18,11 @@ extension Font {
     }
     /// Magic World Line (36)
     static var appWin: Font {
-        .custom("magic-world.line", size: 36, relativeTo: .largeTitle)
+        .custom("MAGICWORLDLINE", size: 36, relativeTo: .largeTitle)
     }
     /// Magic World  (36)
     static var appCard: Font {
-        .custom("magic-world.regular", size: 36, relativeTo: .title)
+        .custom("MAGICWORLD", size: 36, relativeTo: .title)
     }
     
 
