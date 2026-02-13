@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum Tab: Int, CaseIterable {
     case home = 0
@@ -42,7 +43,7 @@ struct MainTabView: View {
                 switch selectedTab {
                 case .home: HomePlaceholderView()
                 case .lab: LabView()
-                case .wins: WinsPlaceholderView()
+                case .wins: WinsView()
                 case .settings: SettingsPlaceholderView()
                 }
             }
@@ -104,16 +105,6 @@ struct MainTabView: View {
 private struct HomePlaceholderView: View {
     var body: some View {
         Text("Home")
-            .font(.appTitle)
-            .foregroundStyle(Color.appFont)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.appBg)
-    }
-}
-
-private struct WinsPlaceholderView: View {
-    var body: some View {
-        Text("Wins")
             .font(.appTitle)
             .foregroundStyle(Color.appFont)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

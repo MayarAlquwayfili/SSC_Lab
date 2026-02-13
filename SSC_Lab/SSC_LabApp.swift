@@ -14,6 +14,6 @@ struct SSC_LabApp: App {
         WindowGroup {
             MainTabView()
         }
-        .modelContainer(for: Experiment.self)
+        .modelContainer(for: [Experiment.self, Win.self])
     }
 }
