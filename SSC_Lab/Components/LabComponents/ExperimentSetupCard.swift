@@ -113,7 +113,7 @@ private struct SetupPickerView<Option: Hashable & Equatable>: View {
         .padding(trackInset)
         .frame(maxWidth: .infinity)
         .frame(height: trackHeight)
-        .background(Capsule().fill(Color.appShade02))
+        .background(Capsule().fill(Color.appShade01))
     }
 }
 
