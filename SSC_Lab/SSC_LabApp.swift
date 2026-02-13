@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SSC_LabApp: App {
@@ -13,5 +14,6 @@ struct SSC_LabApp: App {
         WindowGroup {
             MainTabView()
         }
+        .modelContainer(for: Experiment.self)
     }
 }

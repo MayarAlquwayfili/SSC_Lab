@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddNewExperimentView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
 
     @State private var experimentTitle: String = ""
     @State private var referenceURL: String = ""
@@ -73,6 +75,12 @@ struct AddNewExperimentView: View {
                         Spacer()
                             .frame(height: 30)
                         AppButton(title: "Add To LAB", style: .primary) {
+                            let experiment = Experiment(
+                                title: experimentTitle,
+                                referenceURL: referenceURL,
+                                labNotes: labNotes
+                            )
+                            modelContext.insert(experiment)
                             dismiss()
                         }
                         .padding(.horizontal, horizontalMargin)
