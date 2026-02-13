@@ -64,8 +64,10 @@ struct LabView: View {
                 }
             }
         }
+        
     }
 }
+
 
 #Preview {
     LabView()

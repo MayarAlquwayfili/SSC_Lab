@@ -30,7 +30,7 @@ enum Constants {
         static let tools         = "hammer.fill"
         static let oneTime       = "hands.and.sparkles.fill"
         static let newInterest   = "sparkle.magnifyingglass"
-        static let toolsNone     = "hammer.slash.fill"
+        static let toolsNone     = "ic_WithoutTools"
     }
 
     // Experiment Setup card
