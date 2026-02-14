@@ -10,24 +10,31 @@ import SwiftUI
 
 extension Font {
     
-    // Custom Fonts
-    
+ 
     /// Bobby Jones Soft (36)
     static var appHero: Font {
         .custom("Bobby Jones Soft", size: 36, relativeTo: .largeTitle)
+    }
+    /// Bobby Jones Soft (24) – smaller hero for detail/nav titles
+    static var appHeroSmall: Font {
+        .custom("Bobby Jones Soft", size: 24, relativeTo: .title2)
     }
     /// Magic World Line (36)
     static var appWin: Font {
         .custom("MAGICWORLDLINE", size: 36, relativeTo: .largeTitle)
     }
     /// Magic World  (36)
+    static var appDetailCard: Font {
+        .custom("MAGICWORLD", size: 64, relativeTo: .title)
+    }
+    
+    /// Magic World  (36)
     static var appCard: Font {
         .custom("MAGICWORLD", size: 36, relativeTo: .title)
     }
     
 
-    // MARK: - Timeframe Large
-    /// SF Pro Rounded Bold (20)
+     /// SF Pro Rounded Bold (20)
     static var appTimeframeL_High: Font {
         .system(size: 20, weight: .bold, design: .rounded)
     }
@@ -49,10 +56,6 @@ extension Font {
     static var appTimeframeS_Low: Font {
         .system(size: 8, weight: .bold, design: .rounded)
     }
-    
-    
-    // System Fonts
-    
     /// SF Pro Medium (20)
     static var appTitle: Font {
         .system(size: 20, weight: .medium, design: .rounded)
