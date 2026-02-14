@@ -14,7 +14,6 @@ struct ExperimentCard: View {
     var size: BadgeSize = .small
     var variant: BadgeVariant = .primary
  
-    private let cardSize: CGFloat = 181
     private let cornerRadius: CGFloat = 16
 
     var body: some View {
@@ -48,7 +47,8 @@ struct ExperimentCard: View {
                     .padding(.top, 8)
              }
         }
-        .frame(width: cardSize, height: cardSize)
+        .frame(maxWidth: .infinity)
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 
