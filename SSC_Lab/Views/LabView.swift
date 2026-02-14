@@ -11,74 +11,66 @@ import SwiftData
 struct LabView: View {
     @Query private var experiments: [Experiment]
     @Environment(\.modelContext) private var modelContext
+    @State private var viewModel = LabViewModel()
     @State private var showAddSheet = false
+    @State private var selectedExperiment: Experiment?
 
-    // TODO: Bind to user display name for "[User]'s Lab"
     private let labTitle = "My Lab"
     private let horizontalMargin: CGFloat = 16
+    private let gridSpacing: CGFloat = 16
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
-                // Custom solid header (no liquid/glass toolbar)
-                HStack(alignment: .center, spacing: 0) {
-                    Text(labTitle)
-                        .font(.appHero)
-                        .foregroundStyle(Color.appFont)
-                    Spacer(minLength: 0)
-                    // TODO: Manual Test Insertion — uncomment below to insert a test experiment when tapping Dice.
-                    EmptyView().navButton(icon: "dice.fill") {
-                        /*
-                        let testExp = Experiment(
-                            title: "Test Experiment",
-                            icon: "flask.fill",
-                            environment: "indoor",
-                            tools: "required",
-                            referenceURL: "https://google.com",
-                            labNotes: "Notes go here...",
-                            timeframe: "1D"
-                        )
-                        modelContext.insert(testExp)
-                        */
-                    }
-                    EmptyView().navButton(icon: "plus") {
-                        showAddSheet = true
+                AppHeader(title: labTitle) {
+                    HStack(spacing: 0) {
+                        EmptyView().navButton(icon: "dice.fill") {
+                            if let random = viewModel.randomize(from: experiments) {
+                                selectedExperiment = random
+                            }
+                        }
+                        EmptyView().navButton(icon: "plus") { showAddSheet = true }
                     }
                 }
-                .frame(height: 44)
-                .padding(.horizontal, horizontalMargin)
-                .background(Color.appBg)
 
                 Spacer()
                     .frame(height: 16)
 
                 ScrollView {
                     LazyVGrid(columns: [
-                        GridItem(.flexible(), spacing: 16),
-                        GridItem(.flexible(), spacing: 16)
-                    ], spacing: 16) {
+                        GridItem(.flexible(), spacing: gridSpacing),
+                        GridItem(.flexible(), spacing: gridSpacing)
+                    ], spacing: gridSpacing) {
                         ForEach(experiments) { experiment in
-                            ExperimentCard(
-                                title: experiment.title,
-                                topBadges: [topBadge(for: experiment.environment)],
-                                bottomBadges: bottomBadges(for: experiment)
-                            )
-                        }
-                        
-                        
-                        // Placeholder card when empty (keep existing design)
-                        if experiments.isEmpty {
-                            HStack {
-                                Spacer(minLength: 0)
+                            Button {
+                                selectedExperiment = experiment
+                            } label: {
                                 ExperimentCard(
-                                    title: "COLOR SPRAY",
-                                    topBadges: [.indoor],
-                                    bottomBadges: [.indoor, .tools, .timeframe("1D")]
+                                    title: experiment.title,
+                                    topBadges: [topBadge(for: experiment.environment)],
+                                    bottomBadges: bottomBadges(for: experiment)
                                 )
-                                Spacer(minLength: 0)
-                                
-                                
                             }
+                            .buttonStyle(.plain)
+                            .contextMenu {
+                                Button {
+                                    viewModel.toggleActive(experiment: experiment, allExperiments: experiments, context: modelContext)
+                                } label: {
+                                    Label(experiment.isActive ? "Deactivate" : "Set Active", systemImage: "bolt.fill")
+                                }
+                                Button(role: .destructive) {
+                                    viewModel.delete(experiment: experiment, context: modelContext)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                        }
+                        if experiments.isEmpty {
+                            ExperimentCard(
+                                title: "COLOR SPRAY",
+                                topBadges: [.indoor],
+                                bottomBadges: [.indoor, .tools, .timeframe("1D")]
+                            )
                             .gridCellColumns(2)
                         }
                     }
@@ -88,39 +80,60 @@ struct LabView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.appBg)
             .navigationBarHidden(true)
+            .navigationDestination(item: $selectedExperiment) { experiment in
+                ExperimentDetailView(experiment: experiment)
+                    .onDisappear { selectedExperiment = nil }
+            }
             .sheet(isPresented: $showAddSheet) {
                 AddNewExperimentView()
             }
             .onAppear {
                 if experiments.isEmpty {
-                    // 1. Fixed Example (Color Spray) — order: title, icon, environment, tools, referenceURL, labNotes, timeframe
-                    let colorSpray = Experiment(
-                        title: "COLOR SPRAY",
-                        icon: "sun.fill",
-                        environment: "indoor",
-                        tools: "required",
-                        timeframe: "1D",
-                        referenceURL: "",
-                        labNotes: "Testing pigment density for the final lab result."
-                    )
-                    modelContext.insert(colorSpray)
-
-                    // ---------------------------------------------------------
-                    // 🚀 TODO: COPY FROM HERE TO ADD A NEW REAL EXPERIMENT
-                    // ---------------------------------------------------------
-                    /*
                     let exp1 = Experiment(
-                        title: "Your Competition Title",
-                        icon: "flask.fill",
+                        title: "COLOR SPRAY",
+                        icon: "paintpalette.fill",
                         environment: "indoor",
                         tools: "required",
                         timeframe: "1D",
                         referenceURL: "",
-                        labNotes: "Enter your actual notes here for the judges."
+                        labNotes: "Testing techniques."
                     )
                     modelContext.insert(exp1)
-                    */
-                    // ---------------------------------------------------------
+
+                    let exp2 = Experiment(
+                        title: "POTTERY",
+                        icon: "hands.and.sparkles.fill",
+                        environment: "indoor",
+                        tools: "required",
+                        timeframe: "7D",
+                        referenceURL: "",
+                        labNotes: "Glazing process."
+                    )
+                    modelContext.insert(exp2)
+
+                    let exp3 = Experiment(
+                        title: "SWIFT CHALLENGE",
+                        icon: "swift",
+                        environment: "indoor",
+                        tools: "none",
+                        timeframe: "1D",
+                        referenceURL: "",
+                        labNotes: "Logic practice."
+                    )
+                    modelContext.insert(exp3)
+
+                    let exp4 = Experiment(
+                        title: "SHOP",
+                        icon: "cart.fill",
+                        environment: "outdoor",
+                        tools: "required",
+                        timeframe: "14D",
+                        referenceURL: "",
+                        labNotes: "Layout planning."
+                    )
+                    modelContext.insert(exp4)
+                    
+                    try? modelContext.save()
                 }
             }
         }
@@ -148,4 +161,3 @@ struct LabView: View {
 #Preview {
     LabView()
 }
-

@@ -12,12 +12,13 @@ import SwiftData
 final class Experiment {
     var title: String
     var icon: String
-    var environment: String  // EnvironmentOption.rawValue
-    var tools: String         // ToolsOption.rawValue
-    var timeframe: String     // e.g. "1D", "7D", "30D", "+30D"
-    var logType: String?      // LogTypeOption.rawValue, optional
+    var environment: String
+    var tools: String
+    var timeframe: String
+    var logType: String?      
     var referenceURL: String
     var labNotes: String
+    var isActive: Bool        // Currently active experiment (only one at a time)
 
     init(
         title: String,
@@ -27,7 +28,8 @@ final class Experiment {
         timeframe: String = "1D",
         logType: String? = nil,
         referenceURL: String = "",
-        labNotes: String = ""
+        labNotes: String = "",
+        isActive: Bool = false
     ) {
         self.title = title
         self.icon = icon
@@ -37,5 +39,6 @@ final class Experiment {
         self.logType = logType
         self.referenceURL = referenceURL
         self.labNotes = labNotes
+        self.isActive = isActive
     }
 }
